@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const Base_url = "https://bookmart-api.onrender.com/";
+
 // Register User
 export const registerUser = createAsyncThunk(
   "auth/register",
@@ -12,10 +14,7 @@ export const registerUser = createAsyncThunk(
       //   },
       // };
 
-      const response = await axios.post(
-        "http://localhost:3500/api/register",
-        userData
-      );
+      const response = await axios.post(Base_url + "register", userData);
 
       if (response.data) {
         localStorage.setItem("user", JSON.stringify(response.data));
@@ -38,16 +37,7 @@ export const loginUser = createAsyncThunk(
   "auth/login",
   async (userData, thunkAPI) => {
     try {
-      // const config = {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // };
-
-      const response = await axios.post(
-        "http://localhost:3500/api/login",
-        userData
-      );
+      const response = await axios.post(Base_url + "login", userData);
       if (response.data) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
@@ -81,10 +71,7 @@ export const getUserDetails = createAsyncThunk(
         },
       };
 
-      const response = await axios.get(
-        "http://localhost:3500/api/user",
-        config
-      );
+      const response = await axios.get(Base_url + "user", config);
 
       return response.data;
     } catch (error) {
