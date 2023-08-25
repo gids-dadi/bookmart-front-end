@@ -40,7 +40,7 @@ export const getBooks = createAsyncThunk("book/getBooks", async (thunkAPI) => {
       },
     };
 
-    const response = await axios.get( Base_url + "books", config);
+    const response = await axios.get(Base_url + "books", config);
 
     return response.data;
   } catch (error) {
