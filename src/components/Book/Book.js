@@ -1,13 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../../styles/Book/Book.css";
 
 const Book = ({ book }) => {
-  // const books = useSelector((state) => state.books);
-
-  // const renderList = books.map((book) => {
-    const { _id, title, author, image, price } = book;
+  const { _id, title, author, image, price } = book;
 
   return (
     <div className="book" key={book._id}>

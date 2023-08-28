@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import BookList from "./components/Book/BookList";
-import BookDetails from "./components/Book/BookDetails";
+// import BookDetails from "./components/Book/BookDetails";
 import AddBook from "./components/Book/AddBook";
 import Register from "./features/pages/Register";
 import Login from "./features/pages/Login";

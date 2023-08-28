@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const Base_url = "https://bookmart-api.onrender.com/";
+const Base_url = "http://localhost:3500/api/";
 
 // Register User
 export const registerUser = createAsyncThunk(

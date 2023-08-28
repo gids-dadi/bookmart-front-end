@@ -10,23 +10,23 @@ import "../../styles/Book/BookList.css";
 const BookList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const  user  = useSelector((state) => state.auth);
-  const { books, isLoading, isSuccess, isError, message } = useSelector(
-    (state) => state.books
-  );
+  const user = useSelector((state) => state.auth.accessToken);
+  const { books, isError, message } = useSelector((state) => state.books);
 
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
+    // if (isError) {
+    //   console.log(message);
+    // }
     if (!user) {
       navigate("/login");
     }
     dispatch(getBooks());
-    // return () => {
-    //   dispatch(reset());
-    // };
-  }, [dispatch]);
+
+    return () => {
+      dispatch(reset());
+    };
+    // eslint-disable-next-line
+  }, [books, isError, navigate, message, dispatch]);
 
   return (
     <section className="book-list">

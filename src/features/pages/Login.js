@@ -23,20 +23,18 @@ function Login() {
       console.log("An error ocuured logging in user");
     }
 
-    if (IsSuccess || user) {
-      console.log("Login successful");
-      navigate("/profile");
+    if (user || IsSuccess) {
+      // console.log("Login successful");
+      navigate("/books");
     }
-    dispatch(reset());
-  }, [IsSuccess, navigate, isError, dispatch, user]);
+    // dispatch(reset());
+  }, []);
 
   const handleInputChange = (e) => {
-    setFormData((prevData) => {
-      return {
-        ...prevData,
-        [e.target.name]: e.target.value,
-      };
-    });
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -72,7 +70,7 @@ function Login() {
             name="email"
             value={email}
             placeholder="Enter your Email"
-            required
+            autoComplete="off"
             onChange={handleInputChange}
           />
 
@@ -83,7 +81,7 @@ function Login() {
             name="password"
             value={password}
             placeholder="Enter password"
-            required
+            autoComplete="off"
             onChange={handleInputChange}
           />
 

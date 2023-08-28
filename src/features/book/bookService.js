@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 // import { useParams } from "react-router-dom";
 
-const Base_url = "https://bookmart-api.onrender.com/";
+const Base_url = "http://localhost:3500/api/";
 
 export const createBook = createAsyncThunk(
   "books/create",
@@ -51,6 +51,7 @@ export const getBooks = createAsyncThunk("book/getBooks", async (thunkAPI) => {
     return thunkAPI.rejectWithValue(message);
   }
 });
+
 
 // export const getBookDetails = createAsyncThunk(
 //   "book/getBookDetails",

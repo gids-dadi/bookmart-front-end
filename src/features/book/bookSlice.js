@@ -31,7 +31,6 @@ export const bookSlice = createSlice({
         state.message = action.payload;
         state.isError = true;
       })
-
       .addCase(getBooks.pending, (state) => {
         state.isLoading = true;
       })
@@ -43,13 +42,11 @@ export const bookSlice = createSlice({
       .addCase(getBooks.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
-        state.message = action.payload;
         state.isError = true;
+        state.message = action.payload;
       });
-  }
-
+  },
 });
 
-
-export const {reset} = bookSlice.actions
-export default bookSlice.reducer
+export const { reset } = bookSlice.actions;
+export default bookSlice.reducer;

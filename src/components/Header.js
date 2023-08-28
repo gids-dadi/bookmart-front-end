@@ -13,7 +13,7 @@ const Header = () => {
   const onLogout = () => {
     dispatch(logoutUser());
     navigte("/login");
-    // dispatch(reset());
+    dispatch(reset()); 
   };
 
   return (

@@ -77,7 +77,7 @@ const AddBook = () => {
               name="title"
               value={title}
               placeholder="Enter Book Title"
-              required
+              autoComplete="off"
               onChange={handleInputChange}
             />
 
@@ -89,7 +89,7 @@ const AddBook = () => {
               name="author"
               value={author}
               placeholder="Enter Book Author"
-              required
+              autoComplete="off"
               onChange={handleInputChange}
             />
 
@@ -101,7 +101,7 @@ const AddBook = () => {
               name="image"
               value={image}
               placeholder="Enter Book Image_url"
-              required
+              autoComplete="off"
               onChange={handleInputChange}
             />
 
@@ -113,7 +113,7 @@ const AddBook = () => {
               name="description"
               value={description}
               placeholder="Enter Book Description"
-              required
+              autoComplete="off"
               onChange={handleInputChange}
             />
 
@@ -136,7 +136,7 @@ const AddBook = () => {
               name="price"
               value={price}
               placeholder="Enter Book Price"
-              required
+              autoComplete="off"
               onChange={handleInputChange}
             />
           </div>
