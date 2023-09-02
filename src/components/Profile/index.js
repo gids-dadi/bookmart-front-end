@@ -1,13 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
-const Profile = () => {
+// const Profile = () => {
+  export default function Profile() {
   // const navigate = useNavigate();
 
   const user = useSelector((state) => state.auth.user);
   // const { name, email, role } = user;
-
   return (
     <>
       {user ? (
@@ -23,15 +22,10 @@ const Profile = () => {
           </section>
         </div>
       ) : (
-        <h4>
-          You have been logged out. Please Login{" "}
-          <Link to="/login">
-            <button>Login</button>
-          </Link>
-        </h4>
+        <h4>You have been logged out. Please Login</h4>
       )}
     </>
   );
 };
 
-export default Profile;
+// export default Profile;

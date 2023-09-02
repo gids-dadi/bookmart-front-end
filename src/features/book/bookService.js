@@ -2,8 +2,6 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 // import { useParams } from "react-router-dom";
 
-const Base_url = "http://localhost:3500/api/";
-
 export const createBook = createAsyncThunk(
   "books/create",
   async (bookData, thunkAPI) => {
@@ -16,7 +14,11 @@ export const createBook = createAsyncThunk(
         },
       };
 
-      const response = await axios.post(Base_url + "books", bookData, config);
+      const response = await axios.post(
+        "http://localhost:3500/api/books",
+        bookData,
+        config
+      );
       return response.data;
     } catch (error) {
       const message =
@@ -40,7 +42,7 @@ export const getBooks = createAsyncThunk("book/getBooks", async (thunkAPI) => {
       },
     };
 
-    const response = await axios.get(Base_url + "books", config);
+    const response = await axios.get("http://localhost:3500/api/books", config);
 
     return response.data;
   } catch (error) {
@@ -51,7 +53,6 @@ export const getBooks = createAsyncThunk("book/getBooks", async (thunkAPI) => {
     return thunkAPI.rejectWithValue(message);
   }
 });
-
 
 // export const getBookDetails = createAsyncThunk(
 //   "book/getBookDetails",

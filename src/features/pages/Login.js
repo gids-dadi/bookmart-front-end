@@ -1,14 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { FaSignInAlt } from "react-icons/fa";
 import { loginUser } from "../../features/auth/authService";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { reset } from "../auth/authSlice";
 
 function Login() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const { isError, IsSuccess, user } = useSelector((state) => state.auth);
 
   const [formData, setFormData] = useState({
@@ -20,15 +21,15 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      console.log("An error ocuured logging in user");
+      console.log("An error ocured logging in user");
     }
 
-    if (user || IsSuccess) {
-      // console.log("Login successful");
-      navigate("/books");
+    if (IsSuccess || user) {
+      console.log("Login successful");
+      navigate("/profile");
     }
-    // dispatch(reset());
-  }, []);
+    dispatch(reset());
+  }, [isError, IsSuccess, user, dispatch, navigate]);
 
   const handleInputChange = (e) => {
     setFormData((prevData) => ({

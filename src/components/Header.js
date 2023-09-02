@@ -6,14 +6,16 @@ import { logoutUser } from "../features/auth/authService";
 import { reset } from "../features/auth/authSlice";
 
 const Header = () => {
-  const navigte = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.auth.user);
 
   const onLogout = () => {
     dispatch(logoutUser());
-    navigte("/login");
-    dispatch(reset()); 
+    if (!user) {
+      navigate("/login");
+    }
+    dispatch(reset());
   };
 
   return (
@@ -24,29 +26,25 @@ const Header = () => {
         </Link>
       </div>
 
-      <ul>
-        {user ? (
+      {user ? (
+        <button className="btn" onClick={onLogout}>
+          <FaSignOutAlt /> Logout
+        </button>
+      ) : (
+        <ul>
           <li>
-            <button className="btn" onClick={onLogout}>
-              <FaSignOutAlt /> Logout
-            </button>
+            <Link to="/login">
+              <FaSignInAlt /> Login
+            </Link>
           </li>
-        ) : (
-          <>
-            <li>
-              <Link to="/login">
-                <FaSignInAlt /> Login
-              </Link>
-            </li>
 
-            <li>
-              <Link to="/register">
-                <FaUser /> Register
-              </Link>
-            </li>
-          </>
-        )}
-      </ul>
+          <li>
+            <Link to="/register">
+              <FaUser /> Register
+            </Link>
+          </li>
+        </ul>
+      )}
     </header>
   );
 };

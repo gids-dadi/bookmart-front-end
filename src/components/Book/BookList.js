@@ -14,9 +14,9 @@ const BookList = () => {
   const { books, isError, message } = useSelector((state) => state.books);
 
   useEffect(() => {
-    // if (isError) {
-    //   console.log(message);
-    // }
+    if (isError) {
+      console.log(message);
+    }
     if (!user) {
       navigate("/login");
     }
@@ -30,7 +30,7 @@ const BookList = () => {
 
   return (
     <section className="book-list">
-      {books.length > 0 ? (
+      {books? (
         <div className="books">
           {books.map((book) => (
             <Book key={book._id} book={book} />
