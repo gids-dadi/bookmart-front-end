@@ -5,6 +5,7 @@ import { loginUser } from "../../features/auth/authService";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { reset } from "../auth/authSlice";
+import { toast } from "react-toastify";
 
 function Login() {
   const navigate = useNavigate();
@@ -21,11 +22,11 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      console.log("An error ocured logging in user");
+      toast.error("An error ocured logging in user");
     }
 
     if (IsSuccess || user) {
-      console.log("Login successful");
+      toast.success("Login successful");
       navigate("/profile");
     }
     dispatch(reset());
@@ -47,7 +48,7 @@ function Login() {
     };
 
     if (!email && !password) {
-      console.log("Enter all fields to login");
+      toast.warning("Enter all fields to login");
     } else {
       dispatch(loginUser(userData));
     }

@@ -1,4 +1,6 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router-dom";
 
 import Layout from "./features/pages/Layout";
@@ -12,18 +14,21 @@ import Profile from "./components/Profile";
 
 const App = () => {
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/books" element={<BookList />} />
-          <Route path="/add-book" element={<AddBook />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/register" element={<Register />} />
-        </Route>
-      </Routes>
-    </div>
+    <>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="/books" element={<BookList />} />
+            <Route path="/add-book" element={<AddBook />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
+        </Routes>
+      </div>
+      <ToastContainer />
+    </>
   );
 };
 

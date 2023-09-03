@@ -10,7 +10,7 @@ import "../../styles/Book/BookList.css";
 const BookList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.auth.accessToken);
+  const user = useSelector((state) => state.auth.user);
   const { books, isError, message } = useSelector((state) => state.books);
 
   useEffect(() => {

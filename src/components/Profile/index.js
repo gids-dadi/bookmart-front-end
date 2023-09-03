@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 // const Profile = () => {
-  export default function Profile() {
+export default function Profile() {
   // const navigate = useNavigate();
 
   const user = useSelector((state) => state.auth.user);
@@ -10,22 +10,27 @@ import { useSelector } from "react-redux";
   return (
     <>
       {user ? (
-        <div>
+        <section>
           <h2>Profile Details</h2>
-          <section>
+          <div>
             <h4>Name</h4>
-            <p>{user.name}</p>
-          </section>
-          <section>
+            <p>{user.userInfo.name}</p>
+          </div>
+          <div>
             <h4>Email</h4>
-            <p>{user.email}</p>
-          </section>
-        </div>
+            <p>{user.userInfo.email}</p>
+          </div>
+
+          <div>
+            <h4>Role</h4>
+            <p>{user.userInfo.role}</p>
+          </div>
+        </section>
       ) : (
         <h4>You have been logged out. Please Login</h4>
       )}
     </>
   );
-};
+}
 
 // export default Profile;
