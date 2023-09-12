@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../../styles/Book/Book.css";
 
 const Book = ({ book }) => {
+  // const {id} = useParams()
   const { _id, title, author, image, price } = book;
 
   return (
     <div className="book" key={book._id}>
-      <Link to={`/book/${_id}`}>
+      <Link to={`/books/${_id}`}>
         <div className="book-link">
           <div className="card">
             <div className="image">

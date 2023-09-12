@@ -1,35 +1,48 @@
-// import React, { useEffect } from "react";
-// import { useParams } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import { reset } from "../../features/book/bookSlice";
+import React, { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { reset } from "../../features/book/bookSlice";
+import { getBookDetails } from "../../features/book/bookService";
 
-// const BookDetails = () => {
-//   const book = useSelector((state) => state.book);
-//   const { title, author, image, price } = book;
-//   const { id } = useParams();
-//   const dispatch = useDispatch();
+const BookDetails = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
+  const { books, isError, message } = useSelector((state) => state.books);
+  const { _id, title, author, image, price } = books;
 
-//   useEffect(() => {
-//     return () => {
-//       dispatch(reset());
-//     };
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [id]);
-//   return (
-//     <div className="book" key={book._id}>
-//       <div className="book-link">
-//         <div className="card">
-//           <div className="image">
-//             <img src={image} alt={title} />
-//           </div>
-//           <div className="content">
-//             <div className="title">{title}</div>by <span>{author}</span>
-//             <div className="price">#{price}</div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
 
-// export default BookDetails;
+    if (!user) {
+      navigate("/login");
+    }
+
+    dispatch(getBookDetails());
+
+    return () => {
+      dispatch(reset());
+    };
+    // eslint-disable-next-line
+  }, []);
+
+  return (
+    <div className="book" key={books._id}>
+      <div className="book-link">
+        <div className="card">
+          <div className="image">
+            <img src={image} alt={title} />
+          </div>
+          <div className="content">
+            <div className="title">{title}</div>by <span>{author}</span>
+            <div className="price">#{price}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default BookDetails;

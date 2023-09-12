@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createBook, getBooks } from "./bookService";
+import { createBook, getBooks, getBookDetails } from "./bookService";
 
 const initialState = {
   books: [],
-  isError: false,
-  isSuccess: false,
   isLoading: false,
+  isError: false,
   message: "",
+  isSuccess: false,
 };
 
 export const bookSlice = createSlice({
@@ -26,10 +26,10 @@ export const bookSlice = createSlice({
         state.books.push(action.payload);
       })
       .addCase(createBook.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = false;
         state.message = action.payload;
         state.isError = true;
+        state.isLoading = false;
+        state.isSuccess = false;
       })
       .addCase(getBooks.pending, (state) => {
         state.isLoading = true;
@@ -40,6 +40,20 @@ export const bookSlice = createSlice({
         state.books = action.payload;
       })
       .addCase(getBooks.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getBookDetails.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getBookDetails.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.books = action.payload;
+      })
+      .addCase(getBookDetails.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;

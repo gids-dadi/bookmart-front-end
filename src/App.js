@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Layout from "./features/pages/Layout";
 import BookList from "./components/Book/BookList";
-// import BookDetails from "./components/Book/BookDetails";
+import BookDetails from "./components/Book/BookDetails";
 import AddBook from "./components/Book/AddBook";
 import Register from "./features/pages/Register";
 import Home from "./features/pages/Home";
@@ -20,6 +20,7 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="/books" element={<BookList />} />
+            <Route path="/books/:id" element={<BookDetails />} />
             <Route path="/add-book" element={<AddBook />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />

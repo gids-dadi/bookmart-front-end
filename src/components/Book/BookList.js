@@ -17,20 +17,22 @@ const BookList = () => {
     if (isError) {
       console.log(message);
     }
+    
     if (!user) {
       navigate("/login");
     }
+
     dispatch(getBooks());
 
     return () => {
       dispatch(reset());
     };
     // eslint-disable-next-line
-  }, [books, isError, navigate, message, dispatch]);
+  }, []);
 
   return (
     <section className="book-list">
-      {books? (
+      {books ? (
         <div className="books">
           {books.map((book) => (
             <Book key={book._id} book={book} />

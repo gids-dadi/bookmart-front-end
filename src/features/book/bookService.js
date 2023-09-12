@@ -6,11 +6,9 @@ export const createBook = createAsyncThunk(
   "books/create",
   async (bookData, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.accessToken;
-
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`,
+          "Content-type": "application/json",
         },
       };
 
@@ -34,11 +32,9 @@ export const createBook = createAsyncThunk(
 
 export const getBooks = createAsyncThunk("book/getBooks", async (thunkAPI) => {
   try {
-    const token = thunkAPI.getState().auth.user.accessToken;
-
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
       },
     };
 
@@ -54,31 +50,29 @@ export const getBooks = createAsyncThunk("book/getBooks", async (thunkAPI) => {
   }
 });
 
-// export const getBookDetails = createAsyncThunk(
-//   "book/getBookDetails",
-//   async (thunkAPI) => {
-//     try {
-//       const token = thunkAPI.getState().auth.user.accessToken;
-
-//       const config = {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       };
-//       const response = await axios.get(
-//         `http://localhost:3500/api/book${id}`,
-//         config
-//       );
-
-//       return response.data;
-//     } catch (error) {
-//       const message =
-//         (error.response &&
-//           error.response.data &&
-//           error.response.data.message) ||
-//         error.message ||
-//         error.toString();
-//       return thunkAPI.rejectWithValue(message);
-//     }
-//   }
-// );
+export const getBookDetails = createAsyncThunk(
+  "book/getBookDetails",
+  async (id, thunkAPI) => {
+    try {
+      // const { id } = useParams();
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+      const response = await axios.get(
+        `http://localhost:3500/api/books/${id}`,
+        config
+      );
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
