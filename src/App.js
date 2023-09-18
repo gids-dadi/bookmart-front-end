@@ -10,6 +10,7 @@ import AddBook from "./components/Book/AddBook";
 import Register from "./features/pages/Register";
 import Home from "./features/pages/Home";
 import Login from "./features/pages/Login";
+import Cart from "./features/pages/Cart";
 import Profile from "./components/Profile";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="/books" element={<BookList />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/books/:id" element={<BookDetails />} />
             <Route path="/add-book" element={<AddBook />} />
             <Route path="/login" element={<Login />} />

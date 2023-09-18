@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { reset } from "../../features/book/bookSlice";
 import { getBookDetails } from "../../features/book/bookService";
@@ -9,7 +9,7 @@ const BookDetails = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
   const { books, isError, message } = useSelector((state) => state.books);
-  const { _id, title, author, image, price } = books;
+  const {  title, author, image, price } = books;
 
   useEffect(() => {
     if (isError) {
