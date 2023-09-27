@@ -30,7 +30,7 @@ function Login() {
       navigate("/profile");
     }
     dispatch(reset());
-  }, [isError, IsSuccess, user, dispatch, navigate]);
+  }, [IsSuccess, dispatch, isError, navigate, user]);
 
   const handleInputChange = (e) => {
     setFormData((prevData) => ({

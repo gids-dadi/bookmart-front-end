@@ -9,7 +9,10 @@ export const getCart = createAsyncThunk('cart/getCart', async (id) => {
         'Content-Type': 'application/json'
       }
     };
-    const { data } = await axios.get(`/api/cart/:${id}`, config);
+    const { data } = await axios.get(
+      `http://localhost:3500/api/cart/${id}`,
+      config
+    );
 
     return data;
   } catch (error) {
@@ -18,7 +21,7 @@ export const getCart = createAsyncThunk('cart/getCart', async (id) => {
 }); 
 
 export const addToCart = createAsyncThunk('cart/addToCart', async data => {
-  const { userId, productId, quantity } = data;
+  const { userId, bookId, quantity } = data;
   try {
     const config = {
       headers: {
@@ -26,8 +29,8 @@ export const addToCart = createAsyncThunk('cart/addToCart', async data => {
       }
     };
     const { data } = await axios.post(
-      `/api/cart/:${userId}`,
-      { productId, quantity },
+      `http://localhost:3500/api/cart/${userId}`,
+      { bookId, quantity },
       config
     );
     return data;
@@ -39,10 +42,13 @@ export const addToCart = createAsyncThunk('cart/addToCart', async data => {
 export const updateCart = createAsyncThunk('/cart/update', async data => {
   const { userId, bookId, quantity } = data;
   try {
-    const { data } = await axios.put(`/api/cart/:${userId}`, {
-      bookId,
-      quantity
-    });
+    const { data } = await axios.put(
+      `http://localhost:3500/api/cart/${userId}`,
+      {
+        bookId,
+        quantity,
+      }
+    );
     return data;
   } catch (error) {
     console.log(error);
@@ -62,7 +68,7 @@ export const deleteBookFromCart = createAsyncThunk(
       };
 
       const { data } = await axios.delete(
-        `/api/cart/:${userId}/${bookId}`,
+        `http://localhost:3500/api/cart/:${userId}/:${bookId}`,
         config
       );
       return data;

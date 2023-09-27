@@ -24,7 +24,8 @@ body {
 .header {
   display: flex;
   justify-content: space-between;
-  height: 20vh;
+  height: auto;
+  width: 100%;
   border-bottom: #b5b3b3 solid 1px;
 }
 
@@ -88,20 +89,20 @@ header ul {
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 2px 5px;
   border: 1px solid #000;
   border-radius: 5px;
-  background: #000;
+  /* background: #000; */
   color: #fff;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 12px;
+   font-weight: 700; 
   cursor: pointer;
   text-align: center;
   margin: 15px;
-  appearance: button;
+  /* appearance: button; */
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
 }
 
 .btn:hover {

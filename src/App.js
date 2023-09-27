@@ -10,8 +10,9 @@ import AddBook from "./components/Book/AddBook";
 import Register from "./features/pages/Register";
 import Home from "./features/pages/Home";
 import Login from "./features/pages/Login";
-import Cart from "./features/pages/Cart";
 import Profile from "./components/Profile";
+import Cart from "./features/pages/Cart";
+import Checkout from "./features/pages/Checkout";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path="/books" element={<BookList />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/books/:id" element={<BookDetails />} />
             <Route path="/add-book" element={<AddBook />} />
             <Route path="/login" element={<Login />} />

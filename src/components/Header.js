@@ -1,5 +1,10 @@
 import React from "react";
-import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import {
+  FaSignInAlt,
+  FaSignOutAlt,
+  FaUser,
+  FaShoppingCart,
+} from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../features/auth/authService";
@@ -12,6 +17,7 @@ const Header = () => {
 
   const onLogout = () => {
     dispatch(logoutUser());
+    navigate("/login");
     if (!user) {
       navigate("/login");
     }
@@ -27,23 +33,29 @@ const Header = () => {
       </div>
 
       {user ? (
-        <button className="btn" onClick={onLogout}>
-          <FaSignOutAlt /> Logout
-        </button>
+        <div>
+          <Link to="/cart">
+            <FaShoppingCart />
+          </Link>
+
+          <button className="btn" onClick={onLogout}>
+            <FaSignOutAlt /> Logout
+          </button>
+        </div>
       ) : (
-        <ul>
-          <li>
+        <div>
+          <button className="btn">
             <Link to="/login">
               <FaSignInAlt /> Login
             </Link>
-          </li>
+          </button>
 
-          <li>
+          <button className="btn">
             <Link to="/register">
               <FaUser /> Register
             </Link>
-          </li>
-        </ul>
+          </button>
+        </div>
       )}
     </header>
   );
