@@ -17,11 +17,16 @@ function OrderCard({ dateAdded, totalAmount, status, books }) {
       <CardHeader>
         <p>Order Placed: {dateAdded}</p>
         <p>Total: {totalAmount}</p>
-        <p>Order Status: {status}</p>
+        {/* <p>Order Status: {status}</p> */}
       </CardHeader>
 
-      {books?.map((book) => (
-        <Book imgUrl={book.image} title={book.title} price={book.price} />
+      {books?.map((book, index) => (
+        <Book
+          key={index}
+          imgUrl={book.image}
+          title={book.name}
+          price={book.price}
+        />
       ))}
     </Card>
   );

@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getOrders = createAsyncThunk(
-  "order/get_order/userId",
+  "get_order/userId",
   async (userId) => {
     try {
       const config = {
@@ -11,7 +11,7 @@ export const getOrders = createAsyncThunk(
         },
       };
       const { data } = await axios.get(
-        `http://localhost:3500/api/orders/${userId}`,
+        `http://localhost:3500/api/order/${userId}`,
         config
       );
       return data;
@@ -22,7 +22,7 @@ export const getOrders = createAsyncThunk(
 );
 
 export const createOrder = createAsyncThunk(
-  "order/create_order/userId",
+  "create_order/userId",
   async (userId) => {
 
     try {

@@ -22,26 +22,9 @@ import Checkout from "./features/pages/Checkout";
 
 const App = () => {
 
-    const user = useSelector((state) => state.auth);
-    const dispatch = useDispatch();
-
-    let { userToken } = user;
-    const userId = user?.userInfo?.id;
-
-    // useEffect(() => {
-    //   if (userId) {
-    //     dispatch(getOrders(userId));
-    //   }
-    // }, [userToken, userId, dispatch]);
-
-    // useEffect(() => {
-    //   dispatch(fetchProducts());
-    // }, [dispatch]);
-
-
   return (
     <>
-      <div className="App">
+      <div className="App"> 
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />

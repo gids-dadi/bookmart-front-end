@@ -5,21 +5,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getOrders } from "../order/orderService";
 export default function Orders() {
-
   const orders = useSelector((state) => state.order.orders);
-      const user = useSelector((state) => state.auth);
-      const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
 
-      let { userToken } = user;
-      const userId = user?.userInfo?.id;
-
-
+  // let { userToken } = user;
+  const userId = user?.userInfo?._id;
   useEffect(() => {
     if (userId) {
       dispatch(getOrders(userId));
     }
-  }, [userToken, userId, dispatch]);
-
+  }, [userId, dispatch]);
 
   return (
     <Container>
@@ -30,9 +26,9 @@ export default function Orders() {
         return (
           <OrderCard
             key={order._id}
-            dateAdded={order.date_added}
+            dateAdded={order.date_ordered}
             totalAmount={order.bill}
-            status={order.status}
+            // status={order.status}
             books={order.books}
           />
         );
