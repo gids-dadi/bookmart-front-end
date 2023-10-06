@@ -10,14 +10,12 @@ import { useSelector, useDispatch } from "react-redux";
 import PayStackService from "../../components/Payment/PayStackService";
 import { getCart } from "../cart/cartService";
 import { createOrder } from "../order/orderService";
-import axios from "axios";
 
 export default function Checkout() {
   const cart = useSelector((state) => state.cart.cart);
   const { userInfo } = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
-  // const cartId = cart?._id;
   const userId = userInfo?._id;
 
   useEffect(() => {

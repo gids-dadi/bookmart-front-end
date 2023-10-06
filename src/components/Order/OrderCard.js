@@ -12,6 +12,7 @@ const Book = ({ imgUrl, title, price }) => {
 };
 
 function OrderCard({ dateAdded, totalAmount, status, books }) {
+  console.log(books);
   return (
     <Card>
       <CardHeader>

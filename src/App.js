@@ -3,11 +3,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router-dom";
 
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-
-import { getOrders } from "./features/order/orderService";
-
 import Layout from "./features/pages/Layout";
 import BookList from "./components/Book/BookList";
 import BookDetails from "./components/Book/BookDetails";
