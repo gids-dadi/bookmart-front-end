@@ -20,8 +20,6 @@ const Cart = () => {
   const { userInfo } = useSelector((state) => state.auth.user);
   const userId = userInfo?._id;
 
-  console.log(userId);
-
   const handleUpdateCart = ({ userId, bookId, quantity }) => {
     dispatch(updateCart({ userId, bookId, quantity }));
   };

@@ -4,23 +4,25 @@ import {
   Payment,
   SubTotal,
   Total,
-  RazorPayButton,
 } from "../../styles/CheckoutStyle";
 
-import { useSelector } from "react-redux";
-import PayButton from "../../components/PayButton";
-import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import PayStackService from "../../components/Payment/PayStackService";
+import { getCart } from "../cart/cartService";
+import { createOrder } from "../order/orderService";
 import axios from "axios";
 
 export default function Checkout() {
-  const cart = useSelector((state) => state.cart);
-  const auth = useSelector((state) => state.auth);
-  const navigate = useNavigate();
+  const cart = useSelector((state) => state.cart.cart);
+  const { userInfo } = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
 
-  const cartId = cart?.cart?._id;
+  // const cartId = cart?._id;
+  const userId = userInfo?._id;
 
-  const userId = auth?.userInfo?.id;
-  const amountValue = cart?.cart?.bill;
+  useEffect(() => {
+    dispatch(getCart(userId));
+  }, [userId, dispatch]);
 
   return (
     <CheckoutContainer>
@@ -28,22 +30,19 @@ export default function Checkout() {
       <SubTotal>
         <div>
           <h4>books</h4>
-          <p>${cart?.cart?.bill}</p>
+          <p>${cart?.bill}</p>
         </div>
       </SubTotal>
 
       <Total>
         <h2>Order Total</h2>
-        <p>${cart?.cart?.bill}</p>
+        <p>${cart?.bill}</p>
       </Total>
 
       <Payment>
         <p>Choose below payment methods</p>
-        <RazorPayButton>
-          <button>Raxorpay</button>
-        </RazorPayButton>
-
-        <PayButton />
+        <PayStackService createOrder={createOrder(userId)} />
+        
       </Payment>
     </CheckoutContainer>
   );
